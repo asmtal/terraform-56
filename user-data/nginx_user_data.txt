@@ -1,0 +1,7 @@
+#!/bin/bash
+apt-get update
+#Set env var permanently
+echo "export ENV_NAME=charmander" >> /home/ubuntu/.profile
+#Set env var for this session
+export ENV_NAME=charmander
+/bin/bash /home/ubuntu/kordata-configs.sh > /var/log/kordata-configs.log 2>&1
