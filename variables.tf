@@ -10,17 +10,27 @@ variable "aws_region" {
 
 variable "vpc_cidr" {
     description = "CIDR for the whole VPC"
-    default = "10.0.0.0/22"
+    default = "10.0.12.0/22"
 }
 
 variable "public_subnet_cidr" {
     description = "CIDR for the Public Subnet"
-    default = "10.0.0.0/24"
+    default = "10.0.12.0/24"
+}
+
+variable "public_subnet_cidr_b" {
+    description = "CIDR for the public subnet b"
+    default = "10.0.13.0/24"
 }
 
 variable "private_subnet_cidr" {
     description = "CIDR for the Private Subnet"
-    default = "10.0.1.0/24"
+    default = "10.0.14.0/24"
+}
+
+variable "private_subnet_cidr_b" {
+    description = "CIDR for private subnet b"
+    default = "10.0.15.0/24"
 }
 
 variable "nginx_ami" { 
@@ -37,4 +47,10 @@ variable "docmosis_ami" {
     description = "Generic docmosis ami"
     default = "ami-7fb1711f"
 }
+
+variable "bastion_ami" {
+    description = "Generic bastion host"
+    default = "ami-a2579cc2"
+}
+
 

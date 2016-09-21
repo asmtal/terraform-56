@@ -1,0 +1,5 @@
+#!/bin/bash
+apt-get update
+#No need for env vars due to same template repository for all environments
+/bin/bash /home/ubuntu/kordata-configs.sh >> /var/log/kordata-configs.log 2>&1
+/bin/bash /home/ubuntu/kordata-templates.sh >> /var/log/kordata-templates.log 2>&1

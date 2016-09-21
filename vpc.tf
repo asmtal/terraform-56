@@ -7,8 +7,8 @@ resource "aws_vpc" "default" {
     cidr_block = "${var.vpc_cidr}"
     enable_dns_hostnames = true
     tags {
-        Name = "Private Subnet"
-        Environment = "Sandbox"
+        Name = "DRAGONAIRE-kordata"
+        Environment = "Dragonaire"
         Category = "Kordata"
     }
 }
@@ -42,8 +42,8 @@ resource "aws_subnet" "us-west-2a-public" {
     availability_zone = "us-west-2a"
 
     tags {
-        Name = "Public Subnet"
-        Environment = "Sandbox"
+        Name = "DRAGONAIR-public-2a"
+        Environment = "Dragonair"
         Category = "Kordata" 
     }
 }
@@ -57,8 +57,8 @@ resource "aws_route_table" "us-west-2a-public" {
     }
 
     tags {
-        Name = "Public Subnet"
-        Environment = "Sandbox"
+        Name = "DRAGONAIR-Public-2b Subnet"
+        Environment = "Dragonair"
         Category = "Kordata"
     }
 }
@@ -66,6 +66,38 @@ resource "aws_route_table" "us-west-2a-public" {
 resource "aws_route_table_association" "us-west-2a-public" {
     subnet_id = "${aws_subnet.us-west-2a-public.id}"
     route_table_id = "${aws_route_table.us-west-2a-public.id}"
+}
+resource "aws_subnet" "us-west-2b-public" {
+    vpc_id = "${aws_vpc.default.id}"
+
+    cidr_block = "${var.public_subnet_cidr_b}"
+    availability_zone = "us-west-2b"
+
+    tags {
+        Name = "DRAGONAIR-public-2b"
+        Environment = "Dragonair"
+        Category = "Kordata" 
+    }
+}
+
+resource "aws_route_table" "us-west-2b-public" {
+    vpc_id = "${aws_vpc.default.id}"
+
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = "${aws_internet_gateway.default.id}"
+    }
+
+    tags {
+        Name = "DRAGONAIR-Public-2b"
+        Environment = "Dragonair"
+        Category = "Kordata"
+    }
+}
+
+resource "aws_route_table_association" "us-west-2b-public" {
+    subnet_id = "${aws_subnet.us-west-2b-public.id}"
+    route_table_id = "${aws_route_table.us-west-2b-public.id}"
 }
 
 /*
@@ -78,8 +110,8 @@ resource "aws_subnet" "us-west-2a-private" {
     availability_zone = "us-west-2a"
 
     tags {
-        Name = "Private Subnet"
-        Environment = "Sandbox"
+        Name = "DRAGONAIR-private-2a"
+        Environment = "Dragonair"
         Category = "Kordata"
     }
 }
@@ -93,8 +125,8 @@ resource "aws_route_table" "us-west-2a-private" {
     }
 
     tags {
-        Name = "Private Subnet"
-        Environment = "Sandbox"
+        Name = "DRAGONAIR-private-2a"
+        Environment = "Dragonair"
         Category = "Kordata"
     }
 }
@@ -102,4 +134,37 @@ resource "aws_route_table" "us-west-2a-private" {
 resource "aws_route_table_association" "us-west-2a-private" {
     subnet_id = "${aws_subnet.us-west-2a-private.id}"
     route_table_id = "${aws_route_table.us-west-2a-private.id}"
+}
+
+resource "aws_subnet" "us-west-2b-private" {
+    vpc_id = "${aws_vpc.default.id}"
+
+    cidr_block = "${var.private_subnet_cidr_b}"
+    availability_zone = "us-west-2b"
+
+    tags {
+        Name = "DRAGONAIR-private-2b"
+        Environment = "Dragonair"
+        Category = "Kordata"
+    }
+}
+
+resource "aws_route_table" "us-west-2b-private" {
+    vpc_id = "${aws_vpc.default.id}"
+
+    route {
+        cidr_block = "0.0.0.0/0"
+        nat_gateway_id = "${aws_nat_gateway.gw.id}"
+    }
+
+    tags {
+        Name = "DRAGONAIR-private-2b"
+        Environment = "Dragonair"
+        Category = "Kordata"
+    }
+}
+
+resource "aws_route_table_association" "us-west-2b-private" {
+    subnet_id = "${aws_subnet.us-west-2b-private.id}"
+    route_table_id = "${aws_route_table.us-west-2b-private.id}"
 }

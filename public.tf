@@ -2,7 +2,7 @@
   Web Servers
 */
 resource "aws_security_group" "web" {
-    name = "vpc_web"
+    name = "DRAGONAIR_public_secgroup"
     description = "Allow incoming HTTP connections."
 
     ingress {
@@ -113,17 +113,113 @@ resource "aws_security_group" "web" {
         protocol = "tcp"
         cidr_blocks = ["10.0.0.0/16"]
     }
-    egress { # SQL Server
-        from_port = 1433
-        to_port = 1433
+    egress {
+        from_port = 80
+        to_port = 80
         protocol = "tcp"
-        cidr_blocks = ["${var.private_subnet_cidr}"]
+        cidr_blocks = ["0.0.0.0/0"]
     }
-    egress { # MySQL
-        from_port = 3306
-        to_port = 3306
+    egress {
+        from_port = 8080
+        to_port = 8080
         protocol = "tcp"
-        cidr_blocks = ["${var.private_subnet_cidr}"]
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    egress {
+        from_port = 5000
+        to_port = 5000
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 18901
+        to_port = 18905
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 4369
+        to_port = 4369
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 9998
+        to_port = 9999
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 4984
+        to_port = 4984
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    egress {
+        from_port = 4985
+        to_port = 4985
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 3001
+        to_port = 3001
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    egress {
+        from_port = 123
+        to_port = 123
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    egress {
+        from_port = 443
+        to_port = 443
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    egress {
+        from_port = 9418
+        to_port = 9418
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    egress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 21100
+        to_port = 21299
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 8091
+        to_port = 8095
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 9500
+        to_port = 9500
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 587
+        to_port = 587
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    egress {
+        from_port = 11207
+        to_port = 11215
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
     }
 
     vpc_id = "${aws_vpc.default.id}"
@@ -131,6 +227,6 @@ resource "aws_security_group" "web" {
     tags {
         Name = "SHEDINJA.public.secgroup"
         Category = "Kordata"
-        Environment = "Sandbox"
+        Environment = "Dragonair"
     }
 }
