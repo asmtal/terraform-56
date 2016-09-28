@@ -6,7 +6,7 @@ resource "aws_instance" "couchbase_cluster_node1" {
     subnet_id = "${aws_subnet.us-west-2a-private.id}"
     key_name = "dragonrush"
     tags {
-        Name = "Dragonair.cbnode.kordata"
+        Name = "cbnode.dragonair.kordata"
         Environment = "Dragonair"
         Category = "Kordata"
     }
@@ -19,7 +19,7 @@ resource "aws_instance" "couchbase_cluster_node2" {
     subnet_id = "${aws_subnet.us-west-2a-private.id}"
     key_name = "dragonrush"
     tags {
-        Name = "Dragonair.cbnode.kordata"
+        Name = "cbnode.dragonair.kordata"
         Environment = "Dragonair"
         Category = "Kordata"
     }
@@ -32,7 +32,7 @@ resource "aws_instance" "couchbase_cluster_node3" {
     subnet_id = "${aws_subnet.us-west-2a-private.id}"
     key_name = "dragonrush"
     tags {
-        Name = "Dragonair.cbnode.kordata"
+        Name = "cbnode.dragonair.kordata"
         Environment = "Dragonair"
         Category = "Kordata"
     }

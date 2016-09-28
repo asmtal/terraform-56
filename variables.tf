@@ -66,7 +66,7 @@ variable "cluster_ram_quota" {
 }
 
 variable "bucket_ram_quota" {
-    default = "4790"
+    default = "9000"
 }
 
 variable "couchbase_default_bucket_name" {
