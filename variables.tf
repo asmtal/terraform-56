@@ -53,4 +53,26 @@ variable "bastion_ami" {
     default = "ami-a2579cc2"
 }
 
+variable "admin_user" {
+    default = "admin"
+}
 
+variable "admin_password" {
+    default = "!4dm1n!"
+}
+
+variable "cluster_ram_quota" {
+    default = "9350"
+}
+
+variable "bucket_ram_quota" {
+    default = "4790"
+}
+
+variable "couchbase_default_bucket_name" {
+    default = "sandbox_sync_gateway"
+}
+
+variable "couchbase_default_replicas" {
+    default = "1"
+}

@@ -7,8 +7,8 @@ resource "aws_vpc" "default" {
     cidr_block = "${var.vpc_cidr}"
     enable_dns_hostnames = true
     tags {
-        Name = "DRAGONAIRE-kordata"
-        Environment = "Dragonaire"
+        Name = "DRAGONAIR-kordata"
+        Environment = "Dragonair"
         Category = "Kordata"
     }
 }
@@ -57,7 +57,7 @@ resource "aws_route_table" "us-west-2a-public" {
     }
 
     tags {
-        Name = "DRAGONAIR-Public-2b Subnet"
+        Name = "DRAGONAIR-Public-2a"
         Environment = "Dragonair"
         Category = "Kordata"
     }

@@ -29,7 +29,7 @@ resource "aws_launch_configuration" "docmosis" {
 }
 
 resource "aws_autoscaling_group" "nginx" {
-    availability_zones = ["us-west-2a"]
+    availability_zones = ["us-west-2a", "us-west-2b"]
     name = "dragonair-nginx-autoscale-group"
     max_size = 2
     min_size = 0
@@ -38,10 +38,11 @@ resource "aws_autoscaling_group" "nginx" {
     desired_capacity = 0
     load_balancers = ["${aws_elb.nginx.id}"]
     launch_configuration = "${aws_launch_configuration.nginx.id}"
+    vpc_zone_identifier = ["${aws_subnet.us-west-2a-public.id}", "${aws_subnet.us-west-2b-public.id}"]
 }
 
 resource "aws_autoscaling_group" "sync_gateway" {
-    availability_zones = ["us-west-2a"]
+    availability_zones = ["us-west-2a", "us-west-2b"]
     name = "dragonair-sg-autoscale-group"
     max_size = 2
     min_size = 0
@@ -50,10 +51,11 @@ resource "aws_autoscaling_group" "sync_gateway" {
     desired_capacity = 0
     load_balancers = ["${aws_elb.sync_gateway.id}"]
     launch_configuration = "${aws_launch_configuration.sync_gateway.id}"
+    vpc_zone_identifier = ["${aws_subnet.us-west-2a-private.id}", "${aws_subnet.us-west-2b-private.id}"]
 }
 
 resource "aws_autoscaling_group" "docmosis" {
-    availability_zones = ["us-west-2a"]
+    availability_zones = ["us-west-2a", "us-west-2b"]
     name = "dragonair-docmosis-autoscale-group"
     max_size = 2
     min_size = 0
@@ -62,5 +64,6 @@ resource "aws_autoscaling_group" "docmosis" {
     desired_capacity = 0
     load_balancers = ["${aws_elb.docmosis.id}"]
     launch_configuration = "${aws_launch_configuration.docmosis.id}"
+    vpc_zone_identifier = ["${aws_subnet.us-west-2a-private.id}", "${aws_subnet.us-west-2b-private.id}"]
 }
 
