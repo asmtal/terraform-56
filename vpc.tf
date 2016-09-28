@@ -15,22 +15,36 @@ resource "aws_vpc" "default" {
 
 resource "aws_internet_gateway" "default" {
     vpc_id = "${aws_vpc.default.id}"
+    tags {
+        Name = "DRAGONAIR-igw"
+        Environment = "Dragonair"
+        Category = "Kordata"
+    }
 }
 
 // create the variable for eip, defaults to nothing
-variable "eip" { default = "" }
+variable "eip1" { default = "" }
+variable "eip2" { default = "" }
 
-resource "aws_eip" "nat" {
-    count="${replace(replace(var.eip,"/.+/","0"),"/^$/","1")}"
+resource "aws_eip" "nat1" {
+    count="${replace(replace(var.eip1,"/.+/","0"),"/^$/","1")}"
+}
+resource "aws_eip" "nat2" {
+    count="${replace(replace(var.eip2,"/.+/","0"),"/^$/","1")}"
 }
 
 resource "aws_nat_gateway" "gw" {
-    allocation_id = "${coalesce(var.eip,aws_eip.nat.id)}"
+    allocation_id = "${coalesce(var.eip1,aws_eip.nat1.id)}"
     subnet_id = "${aws_subnet.us-west-2a-public.id}"
     depends_on = ["aws_internet_gateway.default"]
     
 }
-
+resource "aws_nat_gateway" "gw2" {
+    allocation_id = "${coalesce(var.eip2,aws_eip.nat2.id)}"
+    subnet_id = "${aws_subnet.us-west-2b-public.id}"
+    depends_on = ["aws_internet_gateway.default"]
+    
+}
 
 /*
   Public Subnet
@@ -154,7 +168,7 @@ resource "aws_route_table" "us-west-2b-private" {
 
     route {
         cidr_block = "0.0.0.0/0"
-        nat_gateway_id = "${aws_nat_gateway.gw.id}"
+        nat_gateway_id = "${aws_nat_gateway.gw2.id}"
     }
 
     tags {
