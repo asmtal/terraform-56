@@ -9,6 +9,8 @@ resource "aws_instance" "bastion" {
     depends_on = ["aws_nat_gateway.gw"]
     
     tags {
-        Name = "DRAGONAIR.bastion"
+        Name = "bastion.dragonair.kordata"
+        Environment = "Dragonair"
+        Category = "Kordata"
     }
 }

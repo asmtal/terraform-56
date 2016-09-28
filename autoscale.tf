@@ -38,7 +38,20 @@ resource "aws_autoscaling_group" "nginx" {
     desired_capacity = 0
     load_balancers = ["${aws_elb.nginx.id}"]
     launch_configuration = "${aws_launch_configuration.nginx.id}"
-    vpc_zone_identifier = ["${aws_subnet.us-west-2a-public.id}", "${aws_subnet.us-west-2b-public.id}"]
+    vpc_zone_identifier = [ "${aws_subnet.us-west-2a-public.id}", 
+                            "${aws_subnet.us-west-2b-public.id}"]
+    tag {
+        key = "Name"
+        value = "nginx.dragonair.kordata.as"
+    }
+    tag {
+        key = "Environment"
+        value = "Dragonair"
+    }
+    tag {
+        key = "Category"
+        value = "Kordata"
+    }
 }
 
 resource "aws_autoscaling_group" "sync_gateway" {
@@ -51,7 +64,20 @@ resource "aws_autoscaling_group" "sync_gateway" {
     desired_capacity = 0
     load_balancers = ["${aws_elb.sync_gateway.id}"]
     launch_configuration = "${aws_launch_configuration.sync_gateway.id}"
-    vpc_zone_identifier = ["${aws_subnet.us-west-2a-private.id}", "${aws_subnet.us-west-2b-private.id}"]
+    vpc_zone_identifier = [ "${aws_subnet.us-west-2a-private.id}", 
+                            "${aws_subnet.us-west-2b-private.id}"]
+    tag {
+        key = "Name"
+        value = "sync-gateway.dragonair.kordata.as"
+    }
+    tag {
+        key = "Environment"
+        value = "Dragonair"
+    }
+    tag {
+        key = "Category"
+        value = "Kordata"
+    }
 }
 
 resource "aws_autoscaling_group" "docmosis" {
@@ -64,6 +90,19 @@ resource "aws_autoscaling_group" "docmosis" {
     desired_capacity = 0
     load_balancers = ["${aws_elb.docmosis.id}"]
     launch_configuration = "${aws_launch_configuration.docmosis.id}"
-    vpc_zone_identifier = ["${aws_subnet.us-west-2a-private.id}", "${aws_subnet.us-west-2b-private.id}"]
+    vpc_zone_identifier = [ "${aws_subnet.us-west-2a-private.id}", 
+                             "${aws_subnet.us-west-2b-private.id}"]
+    tag {
+        key = "Name"
+        value = "docmosis.dragonair.kordata.as"
+    }
+    tag {
+        key = "Environment"
+        value = "Dragonair"
+    }
+    tag {
+        key = "Category"
+        value = "Kordata"
+    }
 }
 
