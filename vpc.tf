@@ -38,7 +38,7 @@ resource "aws_nat_gateway" "gw" {
 resource "aws_subnet" "us-west-2a-public" {
     vpc_id = "${aws_vpc.default.id}"
 
-    cidr_block = "${var.public_subnet_cidr}"
+    cidr_block = "${var.public_subnet_cidr_a}"
     availability_zone = "us-west-2a"
 
     tags {
@@ -106,7 +106,7 @@ resource "aws_route_table_association" "us-west-2b-public" {
 resource "aws_subnet" "us-west-2a-private" {
     vpc_id = "${aws_vpc.default.id}"
 
-    cidr_block = "${var.private_subnet_cidr}"
+    cidr_block = "${var.private_subnet_cidr_a}"
     availability_zone = "us-west-2a"
 
     tags {

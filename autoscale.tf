@@ -43,14 +43,17 @@ resource "aws_autoscaling_group" "nginx" {
     tag {
         key = "Name"
         value = "nginx.dragonair.kordata.as"
+        propagate_at_launch = false
     }
     tag {
         key = "Environment"
         value = "Dragonair"
+        propagate_at_launch = false
     }
     tag {
         key = "Category"
         value = "Kordata"
+        propagate_at_launch = false
     }
 }
 
@@ -69,14 +72,17 @@ resource "aws_autoscaling_group" "sync_gateway" {
     tag {
         key = "Name"
         value = "sync-gateway.dragonair.kordata.as"
+        propagate_at_launch = false
     }
     tag {
         key = "Environment"
         value = "Dragonair"
+        propagate_at_launch = false
     }
     tag {
         key = "Category"
         value = "Kordata"
+        propagate_at_launch = false
     }
 }
 
@@ -95,14 +101,18 @@ resource "aws_autoscaling_group" "docmosis" {
     tag {
         key = "Name"
         value = "docmosis.dragonair.kordata.as"
+        propagate_at_launch = false
+
     }
     tag {
         key = "Environment"
         value = "Dragonair"
+        propagate_at_launch = false
     }
     tag {
         key = "Category"
         value = "Kordata"
+        propagate_at_launch = false
     }
 }
 
