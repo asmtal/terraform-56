@@ -225,8 +225,8 @@ resource "aws_security_group" "web" {
     vpc_id = "${aws_vpc.default.id}"
 
     tags {
-        Name = "BLUE-DRAGONAIR.public.secgroup"
+        Name = "Gredinja.public.secgroup"
         Category = "Kordata"
-        Environment = "Blue-Dragonair"
+        Environment = "Gredinja"
     }
 }

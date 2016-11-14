@@ -1,5 +1,5 @@
 resource "aws_security_group" "bastion" {
-    name = "BLUE-DRAGONAIR_bastion_secgroup"
+    name = "Gredinja_bastion_secgroup"
     description = "Allow incoming HTTP connections."
 
  ingress {
@@ -30,8 +30,8 @@ egress {
      vpc_id = "${aws_vpc.default.id}"
      
 tags {
-    Name = "BLUE-DRAGONAIR.bastion.secgroup"
-    Environment = "Blue-Dragonair"
+    Name = "Gredinja.bastion.secgroup"
+    Environment = "Gredinja"
     Category = "Kordata"
 }
 }

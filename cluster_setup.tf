@@ -4,10 +4,10 @@ resource "aws_instance" "couchbase_cluster_node1" {
     security_groups = ["${aws_security_group.private.id}"]
     associate_public_ip_address = "false"
     subnet_id = "${aws_subnet.us-west-2a-private.id}"
-    key_name = "Outrage"
+    key_name = "WaterShuriken"
     tags {
-        Name = "cbnode.blue-dragonair.kordata"
-        Environment = "Blue-Dragonair"
+        Name = "cbnode.Gredinja.kordata"
+        Environment = "Gredinja"
         Category = "Kordata"
     }
 }
@@ -17,10 +17,10 @@ resource "aws_instance" "couchbase_cluster_node2" {
     security_groups = ["${aws_security_group.private.id}"]
     associate_public_ip_address = "false"
     subnet_id = "${aws_subnet.us-west-2a-private.id}"
-    key_name = "Outrage"
+    key_name = "WaterShuriken"
     tags {
-        Name = "cbnode.blue-dragonair.kordata"
-        Environment = "Blue-Dragonair"
+        Name = "cbnode.Gredinja.kordata"
+        Environment = "Gredinja"
         Category = "Kordata"
     }
 }
@@ -30,10 +30,10 @@ resource "aws_instance" "couchbase_cluster_node3" {
     security_groups = ["${aws_security_group.private.id}"]
     associate_public_ip_address = "false"
     subnet_id = "${aws_subnet.us-west-2a-private.id}"
-    key_name = "Outrage"
+    key_name = "WaterShuriken"
     tags {
-        Name = "cbnode.blue-dragonair.kordata"
-        Environment = "Blue-Dragonair"
+        Name = "cbnode.Gredinja.kordata"
+        Environment = "Gredinja"
         Category = "Kordata"
     }
 }
@@ -54,9 +54,9 @@ provisioner "remote-exec" {
         bastion_host = "${aws_instance.bastion.public_ip}"
         bastion_port = 22
         bastion_user = "ubuntu"
-        bastion_private_key = "${file("aws_priv_key_file/Outrage.pem")}"
+        bastion_private_key = "${file("aws_priv_key_file/WaterShuriken.pem")}"
         host = "${aws_instance.couchbase_cluster_node1.private_ip}"
-        private_key = "${file("aws_priv_key_file/Outrage.pem")}"
+        private_key = "${file("aws_priv_key_file/WaterShuriken.pem")}"
         }
 inline = [
     "sleep 10",

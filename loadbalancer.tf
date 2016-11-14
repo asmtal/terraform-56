@@ -34,7 +34,7 @@ resource "aws_elb" "sync_gateway" {
 }
 # Create new load balancer for docmosis
 resource "aws_elb" "docmosis" {
-    name = "blue-dragonair-docmosis-elb"
+    name = "Gredinja-docmosis-elb"
     internal = "true"
     subnets = ["${aws_subnet.us-west-2a-private.id}", "${aws_subnet.us-west-2a-private.id}"]
     security_groups = ["${aws_security_group.private.id}"]
@@ -98,7 +98,7 @@ Workflow for the alb is as follows:
 */
 
 resource "aws_alb" "dragonair_blue" {
-    name = "blue-dragonair-alb"
+    name = "Gredinja-alb"
     internal = true
     subnets = ["${aws_subnet.us-west-2a-private.id}", "${aws_subnet.us-west-2b-private.id}"]
     security_groups = ["${aws_security_group.private.id}"]
@@ -139,7 +139,7 @@ resource "aws_alb_listener" "blue_dragonair_8080" {
         }
 }
 resource "aws_alb_target_group" "blue_dragonair" {
-    name = "blue-dragonair-kordata-tg"
+    name = "Gredinja-kordata-tg"
     port = 4984
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -151,7 +151,7 @@ resource "aws_alb_target_group" "blue_dragonair" {
     
 }
 resource "aws_alb_target_group" "blue_dragonair_docmosis" {
-    name = "blue-dragonair-doc-kordata-tg"
+    name = "Gredinja-doc-kordata-tg"
     port = 8080
     protocol = "HTTP"
     vpc_id = "${aws_vpc.default.id}"
@@ -162,7 +162,7 @@ resource "aws_alb_target_group" "blue_dragonair_docmosis" {
     }
 }
 resource "aws_alb_target_group" "blue_dragonair_4985" {
-    name = "blue-dragonair-4985-tg"
+    name = "Gredinja-4985-tg"
     port = 4985
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -181,7 +181,7 @@ resource "aws_alb_target_group" "blue_dragonair_4985" {
 ################################################
 
 resource "aws_alb" "dragonair_blue_public" {
-    name = "public-blue-dragonair-alb"
+    name = "public-Gredinja-alb"
     internal = false
     subnets = ["${aws_subnet.us-west-2a-public.id}", "${aws_subnet.us-west-2b-public.id}"]
     security_groups = ["${aws_security_group.web.id}"]
@@ -242,7 +242,7 @@ resource "aws_alb_listener" "blue_dragonair_80_public" {
         }
 }
 resource "aws_alb_target_group" "blue_dragonair_4985_public" {
-    name = "nginx-blue-dragonair-4985-tg"
+    name = "nginx-Gredinja-4985-tg"
     port = 4985
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -253,7 +253,7 @@ resource "aws_alb_target_group" "blue_dragonair_4985_public" {
     }
 }
 resource "aws_alb_target_group" "blue_dragonair_4984_public" {
-    name = "nginx-blue-dragonair-4984-tg"
+    name = "nginx-Gredinja-4984-tg"
     port = 4984
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -264,7 +264,7 @@ resource "aws_alb_target_group" "blue_dragonair_4984_public" {
     }
 }
 resource "aws_alb_target_group" "blue_dragonair_5000_public" {
-    name = "nginx-blue-dragonair-5000-tg"
+    name = "nginx-Gredinja-5000-tg"
     port = 5000
     protocol = "HTTP"
     vpc_id = "${aws_vpc.default.id}"
@@ -275,7 +275,7 @@ resource "aws_alb_target_group" "blue_dragonair_5000_public" {
     }
 }
 resource "aws_alb_target_group" "blue_dragonair_443_public" {
-    name = "nginx-blue-dragonair-443-tg"
+    name = "nginx-Gredinja-443-tg"
     port = 5000
     protocol = "HTTP"
     vpc_id = "${aws_vpc.default.id}"
@@ -286,7 +286,7 @@ resource "aws_alb_target_group" "blue_dragonair_443_public" {
     }
 }
 resource "aws_alb_target_group" "blue_dragonair_80_public" {
-    name = "nginx-blue-dragonair-80-tg"
+    name = "nginx-Gredinja-80-tg"
     port = 8080
     protocol = "HTTP"
     vpc_id = "${aws_vpc.default.id}"

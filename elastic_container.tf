@@ -35,7 +35,7 @@ EOF
 }
 
 resource "aws_ecs_cluster" "web-kordata-ecs" {
-    name = "web-blue-dragonair-kordata-ecs"
+    name = "web-Gredinja-kordata-ecs"
 }
 resource "aws_ecs_task_definition" "kordata-web" {
     family = "kordata-web"

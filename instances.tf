@@ -5,12 +5,12 @@ resource "aws_instance" "bastion" {
     security_groups = ["${aws_security_group.bastion.id}"]
     subnet_id = "${aws_subnet.us-west-2a-public.id}"
     associate_public_ip_address = "true"
-    key_name = "Outrage"
+    key_name = "WaterShuriken"
     depends_on = ["aws_nat_gateway.gw"]
     
     tags {
-        Name = "bastion.blue-dragonair.kordata"
-        Environment = "Blue-Dragonair"
+        Name = "bastion.Gredinja.kordata"
+        Environment = "Gredinja"
         Category = "Kordata"
     }
 }

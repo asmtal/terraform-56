@@ -6,7 +6,7 @@ resource "aws_launch_configuration" "sync_gateway" {
     security_groups = ["${aws_security_group.private.id}"]
     associate_public_ip_address = "false"
     user_data = "${file("user-data/sg_user_data.txt")}"
-    key_name = "Outrage"
+    key_name = "WaterShuriken"
 }
 
 resource "aws_launch_configuration" "docmosis" {
@@ -16,7 +16,7 @@ resource "aws_launch_configuration" "docmosis" {
     security_groups = ["${aws_security_group.private.id}"]
     associate_public_ip_address = "false"
     user_data = "${file("user-data/docmosis_user_data.txt")}"
-    key_name = "Outrage"
+    key_name = "WaterShuriken"
 }
 
 resource "aws_launch_configuration" "nginx" {
@@ -26,7 +26,7 @@ resource "aws_launch_configuration" "nginx" {
     security_groups = ["${aws_security_group.web.id}"]
     associate_public_ip_address = "true"
     user_data = "${file("user-data/nginx_user_data.txt")}"
-    key_name = "Outrage"
+    key_name = "WaterShuriken"
 }
 
 resource "aws_launch_configuration" "ecs_cluster" {
@@ -37,12 +37,12 @@ resource "aws_launch_configuration" "ecs_cluster" {
     associate_public_ip_address = "true"
     user_data = "${file("user-data/ecs_user_data.txt")}"
     iam_instance_profile = "ChefServer"
-    key_name = "Outrage"
+    key_name = "WaterShuriken"
 }
 
 resource "aws_autoscaling_group" "ecs_cluster" {
     availability_zones = ["us-west-2a", "us-west-2b"]
-    name = "blue-dragonair-ecs-cluster-as-group"
+    name = "Gredinja-ecs-cluster-as-group"
     max_size = 2
     min_size = 0
     health_check_grace_period = 300
@@ -53,12 +53,12 @@ resource "aws_autoscaling_group" "ecs_cluster" {
                         "${aws_subnet.us-west-2b-public.id}"]
     tag {
         key = "Name"
-        value = "ecs_cluster.blue-dragonair.kordata.as"
+        value = "ecs_cluster.Gredinja.kordata.as"
         propagate_at_launch = true
     }
     tag {
         key = "Environment"
-        value = "Blue-Dragonair"
+        value = "Gredinja"
         propagate_at_launch = true
     }
     tag {
@@ -70,7 +70,7 @@ resource "aws_autoscaling_group" "ecs_cluster" {
 
 resource "aws_autoscaling_group" "nginx" {
     availability_zones = ["us-west-2a", "us-west-2b"]
-    name = "blue-dragonair-nginx-autoscale-group"
+    name = "Gredinja-nginx-autoscale-group"
     max_size = 2
     min_size = 0
     health_check_grace_period = 300
@@ -86,12 +86,12 @@ resource "aws_autoscaling_group" "nginx" {
                         "${aws_subnet.us-west-2b-public.id}"]
     tag {
         key = "Name"
-        value = "nginx.blue-dragonair.kordata.as"
+        value = "nginx.Gredinja.kordata.as"
         propagate_at_launch = true
     }
     tag {
         key = "Environment"
-        value = "Blue-Dragonair"
+        value = "Gredinja"
         propagate_at_launch = true
     }
     tag {
@@ -103,7 +103,7 @@ resource "aws_autoscaling_group" "nginx" {
 
 resource "aws_autoscaling_group" "sync_gateway" {
     availability_zones = ["us-west-2a", "us-west-2b"]
-    name = "blue-dragonair-sg-autoscale-group"
+    name = "Gredinja-sg-autoscale-group"
     max_size = 2
     min_size = 0
     health_check_grace_period = 300 
@@ -115,12 +115,12 @@ resource "aws_autoscaling_group" "sync_gateway" {
                             "${aws_subnet.us-west-2b-private.id}"]
     tag {
         key = "Name"
-        value = "sync-gateway.blue-dragonair.kordata.as"
+        value = "sync-gateway.Gredinja.kordata.as"
         propagate_at_launch = true
     }
     tag {
         key = "Environment"
-        value = "Blue-Dragonair"
+        value = "Gredinja"
         propagate_at_launch = true
     }
     tag {
@@ -132,7 +132,7 @@ resource "aws_autoscaling_group" "sync_gateway" {
 
 resource "aws_autoscaling_group" "docmosis" {
     availability_zones = ["us-west-2a", "us-west-2b"]
-    name = "blue-dragonair-docmosis-autoscale-group"
+    name = "Gredinja-docmosis-autoscale-group"
     max_size = 2
     min_size = 0
     health_check_grace_period = 300
@@ -144,13 +144,13 @@ resource "aws_autoscaling_group" "docmosis" {
                              "${aws_subnet.us-west-2b-private.id}"]
     tag {
         key = "Name"
-        value = "docmosis.blue-dragonair.kordata.as"
+        value = "docmosis.Gredinja.kordata.as"
         propagate_at_launch = true
 
     }
     tag {
         key = "Environment"
-        value = "Blue-Dragonair"
+        value = "Gredinja"
         propagate_at_launch = true
     }
     tag {

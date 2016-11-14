@@ -1,11 +1,11 @@
-resource "aws_elastic_beanstalk_application" "blue-dragonair" {
-    name = "blue-dragonair-web-environment"
-    description = "blue-dragonair-test-environment"
+resource "aws_elastic_beanstalk_application" "Gredinja" {
+    name = "Gredinja-web-environment"
+    description = "Gredinja-test-environment"
 }
 
-resource "aws_elastic_beanstalk_environment" "blue-dragonair" {
-    name = "blue-dragonair-web-environment"
-    application = "${aws_elastic_beanstalk_application.blue-dragonair.name}"
+resource "aws_elastic_beanstalk_environment" "Gredinja" {
+    name = "Gredinja-web-environment"
+    application = "${aws_elastic_beanstalk_application.Gredinja.name}"
     solution_stack_name = "64bit Amazon Linux 2016.03 v2.1.6 running Docker 1.11.2" 
 setting {
     namespace = "aws:ec2:vpc"
@@ -115,7 +115,7 @@ setting {
 setting {
   namespace = "aws:elasticbeanstalk:application:environment"
   name = "BUCKET_WITH_SECRET_KEYS"
-  value = "kordata-blue-dragonair"
+  value = "kordata-Gredinja"
     }
 setting {
   namespace = "aws:elasticbeanstalk:application:environment"
@@ -194,14 +194,14 @@ setting {
     }
 }
 
-resource "aws_elastic_beanstalk_application" "blue-dragonair-cldaemon" {
-    name = "blue-dragonair-cldaemon-environment"
-    description = "blue-dragonair-cldaemon-test-environment"
+resource "aws_elastic_beanstalk_application" "Gredinja-cldaemon" {
+    name = "Gredinja-cldaemon-environment"
+    description = "Gredinja-cldaemon-test-environment"
 }
 
-resource "aws_elastic_beanstalk_environment" "blue-dragonair-cldaemon" {
-    name = "blue-dragonair-cldaemon-environment"
-    application = "${aws_elastic_beanstalk_application.blue-dragonair-cldaemon.name}"
+resource "aws_elastic_beanstalk_environment" "Gredinja-cldaemon" {
+    name = "Gredinja-cldaemon-environment"
+    application = "${aws_elastic_beanstalk_application.Gredinja-cldaemon.name}"
     solution_stack_name = "64bit Amazon Linux 2016.03 v2.1.6 running Docker 1.11.2" 
 setting {
     namespace = "aws:ec2:vpc"
