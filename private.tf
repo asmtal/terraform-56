@@ -3,7 +3,7 @@
 */
 resource "aws_security_group" "private" {
     description = "Allow incoming web/database connections."
-    name = "DRAGONAIR_private_secgroup"
+    name = "BLUE_DRAGONAIR_private_secgroup"
 
     ingress { # http
         from_port = 80
@@ -85,7 +85,7 @@ resource "aws_security_group" "private" {
     }
     ingress {
         from_port = 18091
-        to_port = 18093
+        to_port = 18095
         protocol = "tcp"
         cidr_blocks = ["10.1.0.0/16"]
     }
@@ -213,8 +213,8 @@ resource "aws_security_group" "private" {
     vpc_id = "${aws_vpc.default.id}"
 
     tags {
-        Name = "DRAGONAIR.private.secgroup"
+        Name = "BLUE-DRAGONAIR.private.secgroup"
         Category = "Kordata"
-        Environment = "Dragonair"
+        Environment = "Blue-Dragonair"
     }
 }

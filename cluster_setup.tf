@@ -1,39 +1,39 @@
 resource "aws_instance" "couchbase_cluster_node1" {
-    ami = "ami-5e3fed3e"
+    ami = "ami-4215cf22"
     instance_type = "r3.large"
     security_groups = ["${aws_security_group.private.id}"]
     associate_public_ip_address = "false"
     subnet_id = "${aws_subnet.us-west-2a-private.id}"
-    key_name = "dragonrush"
+    key_name = "Outrage"
     tags {
-        Name = "cbnode.dragonair.kordata"
-        Environment = "Dragonair"
+        Name = "cbnode.blue-dragonair.kordata"
+        Environment = "Blue-Dragonair"
         Category = "Kordata"
     }
 }
 resource "aws_instance" "couchbase_cluster_node2" {
-    ami = "ami-5e3fed3e"
+    ami = "ami-4215cf22"
     instance_type = "r3.large"
     security_groups = ["${aws_security_group.private.id}"]
     associate_public_ip_address = "false"
     subnet_id = "${aws_subnet.us-west-2a-private.id}"
-    key_name = "dragonrush"
+    key_name = "Outrage"
     tags {
-        Name = "cbnode.dragonair.kordata"
-        Environment = "Dragonair"
+        Name = "cbnode.blue-dragonair.kordata"
+        Environment = "Blue-Dragonair"
         Category = "Kordata"
     }
 }
 resource "aws_instance" "couchbase_cluster_node3" {
-    ami = "ami-5e3fed3e"
+    ami = "ami-4215cf22"
     instance_type = "r3.large"
     security_groups = ["${aws_security_group.private.id}"]
     associate_public_ip_address = "false"
     subnet_id = "${aws_subnet.us-west-2a-private.id}"
-    key_name = "dragonrush"
+    key_name = "Outrage"
     tags {
-        Name = "cbnode.dragonair.kordata"
-        Environment = "Dragonair"
+        Name = "cbnode.blue-dragonair.kordata"
+        Environment = "Blue-Dragonair"
         Category = "Kordata"
     }
 }
@@ -54,10 +54,9 @@ provisioner "remote-exec" {
         bastion_host = "${aws_instance.bastion.public_ip}"
         bastion_port = 22
         bastion_user = "ubuntu"
-        bastion_private_key = "${file("aws_priv_key_file/dragonrush.pem")}"
+        bastion_private_key = "${file("aws_priv_key_file/Outrage.pem")}"
         host = "${aws_instance.couchbase_cluster_node1.private_ip}"
-        private_key = "${file("aws_priv_key_file/dragonrush.pem")}"
-        agent = false
+        private_key = "${file("aws_priv_key_file/Outrage.pem")}"
         }
 inline = [
     "sleep 10",

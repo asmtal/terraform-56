@@ -1,0 +1,79 @@
+ [
+    {
+      "volumesFrom": [],
+      "memory": 2000,
+      "disableNetworking": false,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 5000,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "name": "kordata-web",
+      "environment": [
+        {
+          "name": "BUCKET_WITH_SECRET_KEYS",
+          "value": "kordata-dragonair"
+        },
+        {
+          "name": "Data:Docmosis:Server",
+          "value": "http://docmosis.sandbox.kordata.com:8080/rs/render"
+        },
+        {
+          "name": "Data:Email:From",
+          "value": "donotreply@kordata.com"
+        },
+        {
+          "name": "Data:Email:Port",
+          "value": "587"
+        },
+        {
+          "name": "Data:Email:Server",
+          "value": "email-smtp.us-west-2.amazonaws.com"
+        },
+        {
+          "name": "Data:Email:UserName",
+          "value": "AKIAI5QDCWGGPKTDKF3A"
+        },
+        {
+          "name": "Data:N1qlConnection:Bucket",
+          "value": "sandbox_sync_gateway"
+        },
+        {
+          "name": "Data:N1qlConnection:Servers",
+          "value": "http://couchbase.sandbox.kordata.com:8091/pools"
+        },
+        {
+          "name": "Data:N1qlConnection:UseSsl",
+          "value": "false"
+        },
+        {
+          "name": "Data:SyncGateway:GatewayName",
+          "value": "sandbox_sync_gateway"
+        },
+        {
+          "name": "Data:SyncGateway:Server",
+          "value": "http://sync-gateway.sandbox.kordata.com:4985"
+        },
+        {
+          "name": "Features:DisableSecureCookie",
+          "value": "false"
+        },
+        {
+          "name": "Hosting:Environment",
+          "value": "development"
+        },
+        {
+          "name": "PublicRootUrl",
+          "value": "https://sandbox.kordata.com"
+        }
+      ],
+      "image": "093234080301.dkr.ecr.us-west-2.amazonaws.com/kordata:latest",
+      "user": "root",
+      "cpu": 0,
+      "privileged": true,
+      "expanded": true
+    }
+ ]

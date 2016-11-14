@@ -2,7 +2,7 @@
   Web Servers
 */
 resource "aws_security_group" "web" {
-    name = "DRAGONAIR_public_secgroup"
+    name = "BLUE_DRAGONAIR_public_secgroup"
     description = "Allow incoming HTTP connections."
 
     ingress {
@@ -225,8 +225,8 @@ resource "aws_security_group" "web" {
     vpc_id = "${aws_vpc.default.id}"
 
     tags {
-        Name = "DRAGONAIR.public.secgroup"
+        Name = "BLUE-DRAGONAIR.public.secgroup"
         Category = "Kordata"
-        Environment = "Dragonair"
+        Environment = "Blue-Dragonair"
     }
 }
