@@ -7,8 +7,8 @@ resource "aws_vpc" "default" {
     cidr_block = "${var.vpc_cidr}"
     enable_dns_hostnames = true
     tags {
-        Name = "Gredinja-kordata"
-        Environment = "Gredinja"
+        Name = "greninja-kordata"
+        Environment = "Greninja"
         Category = "Kordata"
     }
 }
@@ -16,8 +16,8 @@ resource "aws_vpc" "default" {
 resource "aws_internet_gateway" "default" {
     vpc_id = "${aws_vpc.default.id}"
     tags {
-        Name = "Gredinja-igw"
-        Environment = "Gredinja"
+        Name = "greninja-igw"
+        Environment = "Greninja"
         Category = "Kordata"
     }
 }
@@ -56,8 +56,8 @@ resource "aws_subnet" "us-west-2a-public" {
     availability_zone = "us-west-2a"
 
     tags {
-        Name = "Gredinja-public-2a"
-        Environment = "Gredinja"
+        Name = "greninja-public-2a"
+        Environment = "greninja"
         Category = "Kordata" 
     }
 }
@@ -71,8 +71,8 @@ resource "aws_route_table" "us-west-2a-public" {
     }
 
     tags {
-        Name = "Gredinja-Public-2a"
-        Environment = "Gredinja"
+        Name = "greninja-Public-2a"
+        Environment = "Greninja"
         Category = "Kordata"
     }
 }
@@ -88,8 +88,8 @@ resource "aws_subnet" "us-west-2b-public" {
     availability_zone = "us-west-2b"
 
     tags {
-        Name = "Gredinja-public-2b"
-        Environment = "Gredinja"
+        Name = "greninja-public-2b"
+        Environment = "Greninja"
         Category = "Kordata" 
     }
 }
@@ -103,8 +103,8 @@ resource "aws_route_table" "us-west-2b-public" {
     }
 
     tags {
-        Name = "Gredinja-Public-2b"
-        Environment = "Gredinja"
+        Name = "greninja-Public-2b"
+        Environment = "Greninja"
         Category = "Kordata"
     }
 }
@@ -124,8 +124,8 @@ resource "aws_subnet" "us-west-2a-private" {
     availability_zone = "us-west-2a"
 
     tags {
-        Name = "Gredinja-private-2a"
-        Environment = "Gredinja"
+        Name = "greninja-private-2a"
+        Environment = "Greninja"
         Category = "Kordata"
     }
 }
@@ -139,8 +139,8 @@ resource "aws_route_table" "us-west-2a-private" {
     }
 
     tags {
-        Name = "Gredinja-private-2a"
-        Environment = "Gredinja"
+        Name = "greninja-private-2a"
+        Environment = "Greninja"
         Category = "Kordata"
     }
 }
@@ -157,8 +157,8 @@ resource "aws_subnet" "us-west-2b-private" {
     availability_zone = "us-west-2b"
 
     tags {
-        Name = "Gredinja-private-2b"
-        Environment = "Gredinja"
+        Name = "greninja-private-2b"
+        Environment = "Greninja"
         Category = "Kordata"
     }
 }
@@ -172,8 +172,8 @@ resource "aws_route_table" "us-west-2b-private" {
     }
 
     tags {
-        Name = "Gredinja-private-2b"
-        Environment = "Gredinja"
+        Name = "greninja-private-2b"
+        Environment = "Greninja"
         Category = "Kordata"
     }
 }

@@ -10,27 +10,27 @@ variable "aws_region" {
 
 variable "vpc_cidr" {
     description = "CIDR for the whole VPC"
-    default = "10.0.16.0/22"
+    default = "10.0.24.0/22"
 }
 
 variable "public_subnet_cidr_a" {
     description = "CIDR for the Public Subnet"
-    default = "10.0.16.0/24"
+    default = "10.0.24.0/24"
 }
 
 variable "public_subnet_cidr_b" {
     description = "CIDR for the public subnet b"
-    default = "10.0.17.0/24"
+    default = "10.0.25.0/24"
 }
 
 variable "private_subnet_cidr_a" {
     description = "CIDR for the Private Subnet"
-    default = "10.0.18.0/24"
+    default = "10.0.26.0/24"
 }
 
 variable "private_subnet_cidr_b" {
     description = "CIDR for private subnet b"
-    default = "10.0.19.0/24"
+    default = "10.0.27.0/24"
 }
 
 variable "nginx_ami" { 
@@ -40,30 +40,30 @@ variable "nginx_ami" {
 
 variable "sync_gateway_ami" {
     description = "Generic sync_gateway ami"
-    default = "ami-e8963188"
+    default = "ami-66349306"
 }
 
 variable "docmosis_ami" {
     description = "Generic docmosis ami"
-    default = "ami-7fb1711f"
+    default = "ami-efa5018f"
 }
 
 variable "bastion_ami" {
     description = "Generic bastion host"
-    default = "ami-03877563"
+    default = "ami-a2579cc2"
 }
 
 variable "ecs_cluster_ami" {
     description = "ECS Ami"
-    default = "ami-56ed4936"
+    default = "ami-44a00324"
 }
 
 variable "admin_user" {
-    default = "admin"
+    default = "Marvolo"
 }
 
 variable "admin_password" {
-    default = "!4dm1n!"
+    default = "V0ld3m0rt!"
 }
 
 variable "cluster_ram_quota" {

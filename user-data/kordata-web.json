@@ -1,12 +1,12 @@
  [
     {
       "volumesFrom": [],
-      "memory": 2000,
+      "memory": null,
       "disableNetworking": false,
       "portMappings": [
         {
           "hostPort": 80,
-          "containerPort": 5000,
+          "containerPort": 80,
           "protocol": "tcp"
         }
       ],
@@ -15,11 +15,11 @@
       "environment": [
         {
           "name": "BUCKET_WITH_SECRET_KEYS",
-          "value": "kordata-dragonair"
+          "value": "kordata-greninja"
         },
         {
           "name": "Data:Docmosis:Server",
-          "value": "http://docmosis.sandbox.kordata.com:8080/rs/render"
+          "value": "http://docmosis.greninja.kordata.com:8080/rs/render"
         },
         {
           "name": "Data:Email:From",
@@ -43,7 +43,7 @@
         },
         {
           "name": "Data:N1qlConnection:Servers",
-          "value": "http://couchbase.sandbox.kordata.com:8091/pools"
+          "value": "http://couchbase.greninja.kordata.com:8091/pools"
         },
         {
           "name": "Data:N1qlConnection:UseSsl",
@@ -55,7 +55,7 @@
         },
         {
           "name": "Data:SyncGateway:Server",
-          "value": "http://sync-gateway.sandbox.kordata.com:4985"
+          "value": "http://sync-gateway.greninja.kordata.com:4985"
         },
         {
           "name": "Features:DisableSecureCookie",
@@ -67,13 +67,14 @@
         },
         {
           "name": "PublicRootUrl",
-          "value": "https://sandbox.kordata.com"
+          "value": "https://greninja.kordata.com"
         }
       ],
       "image": "093234080301.dkr.ecr.us-west-2.amazonaws.com/kordata:latest",
       "user": "root",
-      "cpu": 0,
+      "cpu": 2048,
       "privileged": true,
-      "expanded": true
+      "expanded": true,
+      "memoryReservation": 7000
     }
  ]

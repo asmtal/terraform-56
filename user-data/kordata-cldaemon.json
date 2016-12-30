@@ -1,0 +1,44 @@
+[
+    {
+      "volumesFrom": [],
+      "memory": null,
+      "disableNetworking": false,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "name": "kordata-cldaemon",
+      "environment": [
+        {
+          "name": "N1qlConnection:Bucket",
+          "value": "sandbox_sync_gateway"
+        },
+        {
+            "name": "Data:N1qlConnection:Servers",
+            "value": "https://couchbase.greninja.com:8091/pools"
+        },
+        {
+            "name": "Data:N1qlConnection:UseSsl",
+            "value": "false"
+        },
+        {
+            "name": "Data:SyncGateway:GatewayName",
+            "value": "sandbox_sync_gateway"
+        },
+        {
+            "name": "Data:SyncGateway:Server",
+            "value": "https://sync-gateway.grenija.com:4985"
+        }
+      ],
+      "image": "093234080301.dkr.ecr.us-west-2.amazonaws.com/kordata:cldaemon",
+      "user": "root",
+      "cpu": 2048,
+      "privileged": true,
+      "expanded": true,
+      "memoryReservation": 7000
+    }
+ ]

@@ -9,8 +9,8 @@ resource "aws_instance" "bastion" {
     depends_on = ["aws_nat_gateway.gw"]
     
     tags {
-        Name = "bastion.Gredinja.kordata"
-        Environment = "Gredinja"
+        Name = "bastion.greninja.kordata"
+        Environment = "Greninja"
         Category = "Kordata"
     }
 }

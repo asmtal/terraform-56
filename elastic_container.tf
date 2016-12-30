@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "kordata" {
-    name = "kordata" 
+    name = "greninja" 
 }
 
 resource "aws_ecr_repository_policy" "kordata_policy" {
@@ -35,7 +35,7 @@ EOF
 }
 
 resource "aws_ecs_cluster" "web-kordata-ecs" {
-    name = "web-Gredinja-kordata-ecs"
+    name = "web-greninja-kordata-ecs"
 }
 resource "aws_ecs_task_definition" "kordata-web" {
     family = "kordata-web"
@@ -47,3 +47,4 @@ resource "aws_ecs_service" "kordata_web" {
     task_definition = "${aws_ecs_task_definition.kordata-web.arn}"
     desired_count = 1
 }
+

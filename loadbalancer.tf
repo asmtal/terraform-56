@@ -1,91 +1,3 @@
-# Create new load balancer for sync_gateway
-resource "aws_elb" "sync_gateway" {
-    name = "dragonair-sync-gateway-elb"
-    internal = "true"
-    subnets = ["${aws_subnet.us-west-2a-private.id}", "${aws_subnet.us-west-2b-private.id}"]
-    security_groups = ["${aws_security_group.private.id}"]
-
-    listener {
-        instance_port = 4984
-        instance_protocol = "http"
-        lb_port = 4984
-        lb_protocol = "http"
-    }
-
-    listener {
-        instance_port = 4985
-        instance_protocol = "http"
-        lb_port = 4985
-        lb_protocol = "http"
-    }
-
-    health_check {
-        healthy_threshold = 4
-        unhealthy_threshold = 2
-        timeout = 10
-        target = "http:4984/"
-        interval = 20
-    }
-    tags {
-        Environment = "Dragonair-Blue"
-        Category = "Kordata"
-        Name = "sg-dragonair-kordata-elb"
-    }
-}
-# Create new load balancer for docmosis
-resource "aws_elb" "docmosis" {
-    name = "Gredinja-docmosis-elb"
-    internal = "true"
-    subnets = ["${aws_subnet.us-west-2a-private.id}", "${aws_subnet.us-west-2a-private.id}"]
-    security_groups = ["${aws_security_group.private.id}"]
-
-    listener {
-        instance_port = 8080
-        instance_protocol = "http"
-        lb_port = 8080
-        lb_protocol = "http"
-    }
-
-    health_check {
-        healthy_threshold = 10
-        unhealthy_threshold = 2
-        timeout = 5
-        target = "http:8080/tornado.html"
-        interval = 30
-    }
-    tags {
-        Name = "docmosis-dragonair-kordata-elb"
-        Environment = "Dragonair-Blue"
-        Category = "Kordata"
-    }
-}
-#Creates an elb for the cbnodes
-resource "aws_elb" "cbnodes" {
-    name = "dragonair-cbnodes-elb"
-    internal = "true"
-    subnets = ["${aws_subnet.us-west-2a-private.id}", "${aws_subnet.us-west-2a-private.id}"]
-    security_groups = ["${aws_security_group.private.id}"]
-
-    listener {
-        instance_port = 8091
-        instance_protocol = "http"
-        lb_port = 8091
-        lb_protocol = "http"
-    }
-
-    health_check {
-        healthy_threshold = 10
-        unhealthy_threshold = 2
-        timeout = 5
-        target = "http:8091/index.html"
-        interval = 30
-    }
-    tags {
-        Name = "cbnodes-dragonair-kordata-elb"
-        Environment = "Dragonair"
-        Category = "Kordata"
-    }
-}
 
 /*
 Application load balancer for the web
@@ -97,8 +9,8 @@ Workflow for the alb is as follows:
 - aws_alb_target_group_attachment
 */
 
-resource "aws_alb" "dragonair_blue" {
-    name = "Gredinja-alb"
+resource "aws_alb" "greninja_private" {
+    name = "private-greninja-alb"
     internal = true
     subnets = ["${aws_subnet.us-west-2a-private.id}", "${aws_subnet.us-west-2b-private.id}"]
     security_groups = ["${aws_security_group.private.id}"]
@@ -107,39 +19,41 @@ resource "aws_alb" "dragonair_blue" {
 
     }
 }
-resource "aws_alb_listener" "blue_dragonair_4984" {
-    load_balancer_arn = "${aws_alb.dragonair_blue.arn}"
+resource "aws_alb_listener" "Greninja_4984" {
+    load_balancer_arn = "${aws_alb.greninja_private.arn}"
     port = 4984
     protocol = "HTTPS"
     ssl_policy = "ELBSecurityPolicy-2015-05"
-    certificate_arn = "arn:aws:iam::093234080301:server-certificate/blueKordata"
+    certificate_arn = "arn:aws:iam::905856206022:server-certificate/star_kordata_com1"
         default_action {
-            target_group_arn = "${aws_alb_target_group.blue_dragonair.arn}"
+            target_group_arn = "${aws_alb_target_group.greninja_4984_private.arn}"
             type = "forward"
         }
 }
-resource "aws_alb_listener" "blue_dragonair_4985" {
-    load_balancer_arn = "${aws_alb.dragonair_blue.arn}"
+resource "aws_alb_listener" "Greninja_4985" {
+    load_balancer_arn = "${aws_alb.greninja_private.arn}"
     port = 4985
     protocol = "HTTPS"
     ssl_policy = "ELBSecurityPolicy-2015-05"
-    certificate_arn = "arn:aws:iam::093234080301:server-certificate/blueKordata"
+    certificate_arn = "arn:aws:iam::905856206022:server-certificate/star_kordata_com1"
         default_action {
-            target_group_arn = "${aws_alb_target_group.blue_dragonair_4985.arn}"
+            target_group_arn = "${aws_alb_target_group.greninja_4985_private.arn}"
             type = "forward"
         }
 }
-resource "aws_alb_listener" "blue_dragonair_8080" {
-    load_balancer_arn = "${aws_alb.dragonair_blue.arn}"
-    port = 8080
-    protocol = "HTTP"
+resource "aws_alb_listener" "Greninja_8443" {
+    load_balancer_arn = "${aws_alb.greninja_private.arn}"
+    port = 8443
+    protocol = "HTTPS"
+    ssl_policy = "ELBSecurityPolicy-2015-05"
+    certificate_arn = "arn:aws:iam:905856206022:server-certificate/star_kordata_com1"
     default_action {
-            target_group_arn = "${aws_alb_target_group.blue_dragonair_docmosis.arn}"
+            target_group_arn = "${aws_alb_target_group.greninja_docmosis_private.arn}"
             type = "forward"
         }
 }
-resource "aws_alb_target_group" "blue_dragonair" {
-    name = "Gredinja-kordata-tg"
+resource "aws_alb_target_group" "greninja_4984_private" {
+    name = "greninja-kordata-tg"
     port = 4984
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -150,10 +64,10 @@ resource "aws_alb_target_group" "blue_dragonair" {
     }
     
 }
-resource "aws_alb_target_group" "blue_dragonair_docmosis" {
-    name = "Gredinja-doc-kordata-tg"
-    port = 8080
-    protocol = "HTTP"
+resource "aws_alb_target_group" "greninja_docmosis_private" {
+    name = "docmosis8443-greninja-kordata-tg"
+    port = 8443
+    protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
     health_check {
         interval = 10
@@ -161,8 +75,8 @@ resource "aws_alb_target_group" "blue_dragonair_docmosis" {
         protocol = "HTTP"
     }
 }
-resource "aws_alb_target_group" "blue_dragonair_4985" {
-    name = "Gredinja-4985-tg"
+resource "aws_alb_target_group" "greninja_4985_private" {
+    name = "greninja-4985-tg"
     port = 4985
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -180,8 +94,8 @@ resource "aws_alb_target_group" "blue_dragonair_4985" {
 #                                              #
 ################################################
 
-resource "aws_alb" "dragonair_blue_public" {
-    name = "public-Gredinja-alb"
+resource "aws_alb" "greninja_public" {
+    name = "public-greninja-alb"
     internal = false
     subnets = ["${aws_subnet.us-west-2a-public.id}", "${aws_subnet.us-west-2b-public.id}"]
     security_groups = ["${aws_security_group.web.id}"]
@@ -190,59 +104,38 @@ resource "aws_alb" "dragonair_blue_public" {
 
     }
 }
-resource "aws_alb_listener" "blue_dragonair_4984_public" {
-    load_balancer_arn = "${aws_alb.dragonair_blue_public.arn}"
+resource "aws_alb_listener" "greninja_4984_public" {
+    load_balancer_arn = "${aws_alb.greninja_public.arn}"
     port = 4984
     protocol = "HTTPS"
     ssl_policy = "ELBSecurityPolicy-2015-05"
-    certificate_arn = "arn:aws:iam::093234080301:server-certificate/blueKordata"
+    certificate_arn = "arn:aws:iam::905856206022:server-certificate/star_kordata_com1"
         default_action {
-            target_group_arn = "${aws_alb_target_group.blue_dragonair_4984_public.arn}" #Change me
+            target_group_arn = "${aws_alb_target_group.greninja_4984_public.arn}" #Change me
             type = "forward"
         }
 }
-resource "aws_alb_listener" "blue_dragonair_4985_public" {
-    load_balancer_arn = "${aws_alb.dragonair_blue_public.arn}"
-    port = 4985
-    protocol = "HTTPS"
-    ssl_policy = "ELBSecurityPolicy-2015-05"
-    certificate_arn = "arn:aws:iam::093234080301:server-certificate/blueKordata"
-        default_action {
-            target_group_arn = "${aws_alb_target_group.blue_dragonair_4985_public.arn}" #Change me
-            type = "forward"
-        }
-}
-resource "aws_alb_listener" "blue_dragonair_5500_public" {
-    load_balancer_arn = "${aws_alb.dragonair_blue_public.arn}"
-    port = 5500
-    protocol = "HTTPS"
-    certificate_arn = "arn:aws:iam::093234080301:server-certificate/blueKordata"
-    default_action {
-            target_group_arn = "${aws_alb_target_group.blue_dragonair_80_public.arn}" #Change me
-            type = "forward"
-        }
-}
-resource "aws_alb_listener" "blue_dragonair_443_public" {
-    load_balancer_arn = "${aws_alb.dragonair_blue_public.arn}"
+resource "aws_alb_listener" "greninja_443_public" {
+    load_balancer_arn = "${aws_alb.greninja_public.arn}"
     port = 443
     protocol = "HTTPS"
-    certificate_arn = "arn:aws:iam::093234080301:server-certificate/blueKordata"
+    certificate_arn = "arn:aws:iam::905856206022:server-certificate/star_kordata_com1"
     default_action {
-            target_group_arn = "${aws_alb_target_group.blue_dragonair_443_public.arn}" #Change me
+            target_group_arn = "${aws_alb_target_group.greninja_443_public.arn}" #Change me
             type = "forward"
         }
 }
-resource "aws_alb_listener" "blue_dragonair_80_public" {
-    load_balancer_arn = "${aws_alb.dragonair_blue_public.arn}"
+resource "aws_alb_listener" "greninja_80_public" {
+    load_balancer_arn = "${aws_alb.greninja_public.arn}"
     port = 80
     protocol = "HTTP"
     default_action {
-            target_group_arn = "${aws_alb_target_group.blue_dragonair_80_public.arn}" #Change me
+            target_group_arn = "${aws_alb_target_group.greninja_80_public.arn}" #Change me
             type = "forward"
         }
 }
-resource "aws_alb_target_group" "blue_dragonair_4985_public" {
-    name = "nginx-Gredinja-4985-tg"
+resource "aws_alb_target_group" "greninja_4985_public" {
+    name = "nginx-greninja-4985-tg"
     port = 4985
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -252,8 +145,8 @@ resource "aws_alb_target_group" "blue_dragonair_4985_public" {
         protocol = "HTTPS"
     }
 }
-resource "aws_alb_target_group" "blue_dragonair_4984_public" {
-    name = "nginx-Gredinja-4984-tg"
+resource "aws_alb_target_group" "greninja_4984_public" {
+    name = "nginx-greninja-4984-tg"
     port = 4984
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -263,8 +156,8 @@ resource "aws_alb_target_group" "blue_dragonair_4984_public" {
         protocol = "HTTPS"
     }
 }
-resource "aws_alb_target_group" "blue_dragonair_5000_public" {
-    name = "nginx-Gredinja-5000-tg"
+resource "aws_alb_target_group" "greninja_5000_public" {
+    name = "nginx-greninja-5000-tg"
     port = 5000
     protocol = "HTTP"
     vpc_id = "${aws_vpc.default.id}"
@@ -274,8 +167,8 @@ resource "aws_alb_target_group" "blue_dragonair_5000_public" {
         protocol = "HTTP"
     }
 }
-resource "aws_alb_target_group" "blue_dragonair_443_public" {
-    name = "nginx-Gredinja-443-tg"
+resource "aws_alb_target_group" "greninja_443_public" {
+    name = "nginx-greninja-443-tg"
     port = 5000
     protocol = "HTTP"
     vpc_id = "${aws_vpc.default.id}"
@@ -285,8 +178,8 @@ resource "aws_alb_target_group" "blue_dragonair_443_public" {
         protocol = "HTTP"
     }
 }
-resource "aws_alb_target_group" "blue_dragonair_80_public" {
-    name = "nginx-Gredinja-80-tg"
+resource "aws_alb_target_group" "greninja_80_public" {
+    name = "nginx-greninja-80-tg"
     port = 8080
     protocol = "HTTP"
     vpc_id = "${aws_vpc.default.id}"

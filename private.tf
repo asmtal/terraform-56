@@ -3,7 +3,7 @@
 */
 resource "aws_security_group" "private" {
     description = "Allow incoming web/database connections."
-    name = "BLUE_DRAGONAIR_private_secgroup"
+    name = "greninja_private_secgroup"
 
     ingress { # http
         from_port = 80
@@ -213,8 +213,8 @@ resource "aws_security_group" "private" {
     vpc_id = "${aws_vpc.default.id}"
 
     tags {
-        Name = "Gredinja.private.secgroup"
+        Name = "greninja.private.secgroup"
         Category = "Kordata"
-        Environment = "Gredinja"
+        Environment = "Greninja"
     }
 }
