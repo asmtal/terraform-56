@@ -40,7 +40,6 @@ resource "aws_autoscaling_group" "ecs_cluster" {
     desired_capacity = 1
     target_group_arns = ["${aws_alb_target_group.greninja_4985_public.arn}", 
                         "${aws_alb_target_group.greninja_4984_public.arn}", 
-                        "${aws_alb_target_group.greninja_5000_public.arn}",
                         "${aws_alb_target_group.greninja_443_public.arn}",
                         "${aws_alb_target_group.greninja_80_public.arn}"]
     launch_configuration = "${aws_launch_configuration.ecs_cluster.id}"

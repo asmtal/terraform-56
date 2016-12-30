@@ -53,7 +53,7 @@ resource "aws_alb_listener" "Greninja_8443" {
         }
 }
 resource "aws_alb_target_group" "greninja_4984_private" {
-    name = "greninja-kordata-tg"
+    name = "sg4984-greninja-kordata-tg"
     port = 4984
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -72,11 +72,11 @@ resource "aws_alb_target_group" "greninja_docmosis_private" {
     health_check {
         interval = 10
         port = "traffic-port"
-        protocol = "HTTP"
+        protocol = "HTTPS"
     }
 }
 resource "aws_alb_target_group" "greninja_4985_private" {
-    name = "greninja-4985-tg"
+    name = "sg4985-greninja-4985-tg"
     port = 4985
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -135,7 +135,7 @@ resource "aws_alb_listener" "greninja_80_public" {
         }
 }
 resource "aws_alb_target_group" "greninja_4985_public" {
-    name = "nginx-greninja-4985-tg"
+    name = "nginx4985-greninja-kordata-tg"
     port = 4985
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -146,7 +146,7 @@ resource "aws_alb_target_group" "greninja_4985_public" {
     }
 }
 resource "aws_alb_target_group" "greninja_4984_public" {
-    name = "nginx-greninja-4984-tg"
+    name = "nginx4984-greninja-kordata-tg"
     port = 4984
     protocol = "HTTPS"
     vpc_id = "${aws_vpc.default.id}"
@@ -156,31 +156,20 @@ resource "aws_alb_target_group" "greninja_4984_public" {
         protocol = "HTTPS"
     }
 }
-resource "aws_alb_target_group" "greninja_5000_public" {
-    name = "nginx-greninja-5000-tg"
-    port = 5000
-    protocol = "HTTP"
-    vpc_id = "${aws_vpc.default.id}"
-    health_check {
-        interval = 10
-        port = "traffic-port"
-        protocol = "HTTP"
-    }
-}
 resource "aws_alb_target_group" "greninja_443_public" {
-    name = "nginx-greninja-443-tg"
-    port = 5000
+    name = "nginx443-greninja-kordata-tg"
+    port = 443
     protocol = "HTTP"
     vpc_id = "${aws_vpc.default.id}"
     health_check {
         interval = 10
         port = "traffic-port"
-        protocol = "HTTP"
+        protocol = "HTTPS"
     }
 }
 resource "aws_alb_target_group" "greninja_80_public" {
-    name = "nginx-greninja-80-tg"
-    port = 8080
+    name = "nginx80-greninja-kordata-tg"
+    port = 80
     protocol = "HTTP"
     vpc_id = "${aws_vpc.default.id}"
     health_check {
