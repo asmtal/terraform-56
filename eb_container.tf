@@ -1,13 +1,13 @@
 
 
-resource "aws_elastic_beanstalk_application" "greninja-daemons" {
-    name = "greninja-daemons-environment"
-    description = "greninja-daemon-environment"
+resource "aws_elastic_beanstalk_application" "environment-daemons" {
+    name = "environment-daemons-environment"
+    description = "environment-daemon-environment"
 }
 
-resource "aws_elastic_beanstalk_environment" "greninja-cldaemon" {
-    name = "greninja-cldaemon-environment"
-    application = "${aws_elastic_beanstalk_application.greninja-daemons.name}"
+resource "aws_elastic_beanstalk_environment" "environment-cldaemon" {
+    name = "environment-cldaemon-environment"
+    application = "${aws_elastic_beanstalk_application.environment-daemons.name}"
     solution_stack_name = "64bit Amazon Linux 2016.03 v2.1.6 running Docker 1.11.2" 
 setting {
     namespace = "aws:ec2:vpc"
@@ -17,7 +17,7 @@ setting {
 setting {
   namespace = "aws:autoscaling:launchconfiguration"
   name = "IamInstanceProfile"
-  value = "arn:aws:iam::905856206022:instance-profile/Kordata"
+  value = "arn:aws:iam::XXXXXXXXXXXX:instance-profile/SomeCategoryName"
 }
 setting {
         namespace = "aws:ec2:vpc"
@@ -37,7 +37,7 @@ setting {
 setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name = "InstanceType"
-    value = "t2.small"
+    value = "m4.large"
   }
 setting {
     namespace = "aws:autoscaling:asg"
@@ -122,7 +122,7 @@ setting {
 setting {
   namespace = "aws:elasticbeanstalk:application:environment"
   name = "Data:N1qlConnection:Servers"
-  value = "https://couchbase.greninja.kordata.com:18091/pools"
+  value = "https://couchbase.environment.com:18091/pools"
     }
 setting {
   namespace = "aws:elasticbeanstalk:application:environment"
@@ -137,13 +137,17 @@ setting {
 setting {
   namespace = "aws:elasticbeanstalk:application:environment"
   name = "Data:SyncGateway:Server"
-  value = "https://sync_gateway.greninja.kordata.com:4985"
+  value = "https://sync_gateway.environment.com:4985"
     }
+tags {
+  Environment = "environment"
+  Category = "SomeCategoryName"
+  }
 }
 
-resource "aws_elastic_beanstalk_environment" "greninja_doxpiry" {
-    name = "greninja-doxpiry-environment"
-    application = "${aws_elastic_beanstalk_application.greninja-daemons.name}"
+resource "aws_elastic_beanstalk_environment" "environment_doxpiry" {
+    name = "environment-doxpiry-environment"
+    application = "${aws_elastic_beanstalk_application.environment-daemons.name}"
     solution_stack_name = "64bit Amazon Linux 2016.03 v2.1.6 running Docker 1.11.2" 
 setting {
     namespace = "aws:ec2:vpc"
@@ -153,7 +157,7 @@ setting {
 setting {
   namespace = "aws:autoscaling:launchconfiguration"
   name = "IamInstanceProfile"
-  value = "arn:aws:iam::905856206022:instance-profile/Kordata"
+  value = "arn:aws:iam::XXXXXXXXXXX:instance-profile/SomeProfileName"
 }
 setting {
         namespace = "aws:ec2:vpc"
@@ -173,7 +177,7 @@ setting {
 setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name = "InstanceType"
-    value = "t2.small"
+    value = "m4.large"
   }
 setting {
     namespace = "aws:autoscaling:asg"
@@ -258,7 +262,7 @@ setting {
 setting {
   namespace = "aws:elasticbeanstalk:application:environment"
   name = "Data:N1qlConnection:Servers"
-  value = "https://couchbase.greninja.kordata.com:18091/pools"
+  value = "https://couchbase.environment.com:18091/pools"
     }
 setting {
   namespace = "aws:elasticbeanstalk:application:environment"
@@ -273,11 +277,15 @@ setting {
 setting {
   namespace = "aws:elasticbeanstalk:application:environment"
   name = "Data:SyncGateway:Server"
-  value = "https://sync_gateway.greninja.kordata.com:4985"
+  value = "https://sync_gateway.environment.com:4985"
     }
 setting {
     namespace = "aws:elasticbeanstalk:application:environment"
     name = "DocumentExpiration:DelayTillNextRunSeconds"
     value = "86400"
 }
+tags {
+    Environment = "environment"
+    Category = "SomeCategoryName"
+  }
 }

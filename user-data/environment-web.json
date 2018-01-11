@@ -5,25 +5,25 @@
       "disableNetworking": false,
       "portMappings": [
         {
-          "hostPort": 80,
-          "containerPort": 80,
+          "hostPort": 8080,
+          "containerPort": 5000,
           "protocol": "tcp"
         }
       ],
       "essential": true,
-      "name": "kordata-web",
+      "name": "name-web",
       "environment": [
         {
           "name": "BUCKET_WITH_SECRET_KEYS",
-          "value": "kordata-greninja"
+          "value": "name-environment"
         },
         {
           "name": "Data:Docmosis:Server",
-          "value": "http://docmosis.greninja.kordata.com:8080/rs/render"
+          "value": "https://docmosis.environment.com:8443/rs/render"
         },
         {
           "name": "Data:Email:From",
-          "value": "donotreply@kordata.com"
+          "value": "donotreply@name.com"
         },
         {
           "name": "Data:Email:Port",
@@ -35,7 +35,7 @@
         },
         {
           "name": "Data:Email:UserName",
-          "value": "AKIAI5QDCWGGPKTDKF3A"
+          "value": "Username"
         },
         {
           "name": "Data:N1qlConnection:Bucket",
@@ -43,7 +43,7 @@
         },
         {
           "name": "Data:N1qlConnection:Servers",
-          "value": "http://couchbase.greninja.kordata.com:8091/pools"
+          "value": "https://couchbase.environment.com:18091/pools"
         },
         {
           "name": "Data:N1qlConnection:UseSsl",
@@ -55,7 +55,7 @@
         },
         {
           "name": "Data:SyncGateway:Server",
-          "value": "http://sync-gateway.greninja.kordata.com:4985"
+          "value": "https://sync-gateway.environment.com:4985"
         },
         {
           "name": "Features:DisableSecureCookie",
@@ -67,10 +67,10 @@
         },
         {
           "name": "PublicRootUrl",
-          "value": "https://greninja.kordata.com"
+          "value": "https://environment.name.com"
         }
       ],
-      "image": "093234080301.dkr.ecr.us-west-2.amazonaws.com/kordata:latest",
+      "image": "XXXXXXXXXXXXXXXX.dkr.ecr.us-west-2.amazonaws.com/imageRepo:ImageName",
       "user": "root",
       "cpu": 2048,
       "privileged": true,

@@ -35,35 +35,35 @@ variable "private_subnet_cidr_b" {
 
 variable "nginx_ami" { 
     description = "Generic nginx ami"
-    default = "ami-9627ecf6" 
+    default = "ami-XXXXXXX" 
 }
 
 variable "sync_gateway_ami" {
     description = "Generic sync_gateway ami"
-    default = "ami-66349306"
+    default = "ami-XXXXXXX"
 }
 
 variable "docmosis_ami" {
     description = "Generic docmosis ami"
-    default = "ami-efa5018f"
+    default = "ami-XXXXXXX"
 }
 
 variable "bastion_ami" {
     description = "Generic bastion host"
-    default = "ami-a2579cc2"
+    default = "ami-XXXXXXX"
 }
 
 variable "ecs_cluster_ami" {
     description = "ECS Ami"
-    default = "ami-44a00324"
+    default = "ami-XXXXXXX"
 }
 
 variable "admin_user" {
-    default = "Marvolo"
+    default = "UserName"
 }
 
 variable "admin_password" {
-    default = "V0ld3m0rt!"
+    default = "Password"
 }
 
 variable "cluster_ram_quota" {
@@ -80,4 +80,12 @@ variable "couchbase_default_bucket_name" {
 
 variable "couchbase_default_replicas" {
     default = "1"
+}
+
+variable "peer_owner_id" {
+    default = "XXXXXXXXXXXX"
+}
+
+variable "peer_vpc_id" {
+    default = "vpc-XXXXXXXX"
 }

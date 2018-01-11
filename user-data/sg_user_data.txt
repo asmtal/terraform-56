@@ -1,7 +1,7 @@
 #!/bin/bash
 apt-get update
 #Set env var permanently
-echo "export ENV_NAME=greninja" >> /home/ubuntu/.profile
+echo "export ENV_NAME=environment" >> /home/ubuntu/.profile
 #Set env var for this session
-export ENV_NAME=greninja
-/bin/bash /home/ubuntu/kordata-configs.sh > /var/log/kordata-configs.log 2>&1
+export ENV_NAME=environment
+/bin/bash /home/ubuntu/name-configs.sh > /var/log/name-configs.log 2>&1

@@ -1,9 +1,9 @@
-resource "aws_ecr_repository" "kordata" {
-    name = "greninja" 
+resource "aws_ecr_repository" "name" {
+    name = "environment" 
 }
 
-resource "aws_ecr_repository_policy" "kordata_policy" {
-    repository = "${aws_ecr_repository.kordata.name}"
+resource "aws_ecr_repository_policy" "name_policy" {
+    repository = "${aws_ecr_repository.name.name}"
     policy = <<EOF
 {
     "Version": "2008-10-17",
@@ -34,17 +34,18 @@ resource "aws_ecr_repository_policy" "kordata_policy" {
 EOF
 }
 
-resource "aws_ecs_cluster" "web-kordata-ecs" {
-    name = "web-greninja-kordata-ecs"
+resource "aws_ecs_cluster" "web-name-ecs" {
+    name = "web-environment-name-ecs"
 }
-resource "aws_ecs_task_definition" "kordata-web" {
-    family = "kordata-web"
-    container_definitions = "${file("user-data/kordata-web.json")}"
+resource "aws_ecs_task_definition" "name-web" {
+    family = "name-web"
+    container_definitions = "${file("user-data/name-web.json")}"
+    task_role_arn = "arn:aws:iam::XXXXXXXXXXXX:role/name-ECS-Task"
 }
-resource "aws_ecs_service" "kordata_web" {
-    name = "kordata-web"
-    cluster = "${aws_ecs_cluster.web-kordata-ecs.id}"
-    task_definition = "${aws_ecs_task_definition.kordata-web.arn}"
+resource "aws_ecs_service" "name_web" {
+    name = "name-web"
+    cluster = "${aws_ecs_cluster.web-name-ecs.id}"
+    task_definition = "${aws_ecs_task_definition.name-web.arn}"
     desired_count = 1
 }
 

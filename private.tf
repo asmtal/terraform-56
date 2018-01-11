@@ -3,11 +3,29 @@
 */
 resource "aws_security_group" "private" {
     description = "Allow incoming web/database connections."
-    name = "greninja_private_secgroup"
+    name = "environment_private_secgroup"
 
     ingress { # http
         from_port = 80
         to_port = 80
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    ingress {
+        from_port = 50
+        to_port = 50
+        protocol = "50"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    ingress {
+        from_port = 51
+        to_port = 51
+        protocol = "51"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    ingress {
+        from_port = 8443
+        to_port = 8443
         protocol = "tcp"
         cidr_blocks = ["10.0.0.0/16"]
     }
@@ -114,6 +132,24 @@ resource "aws_security_group" "private" {
         cidr_blocks = ["0.0.0.0/0"]
     }
     egress {
+        from_port = 8443
+        to_port = 8443
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 50
+        to_port = 50
+        protocol = "50"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
+        from_port = 51
+        to_port = 51
+        protocol = "51"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
         from_port = 8080
         to_port = 8080
         protocol = "tcp"
@@ -213,8 +249,8 @@ resource "aws_security_group" "private" {
     vpc_id = "${aws_vpc.default.id}"
 
     tags {
-        Name = "greninja.private.secgroup"
-        Category = "Kordata"
-        Environment = "Greninja"
+        Name = "environment.private.secgroup"
+        Category = "SomeCategoryName"
+        Environment = "environment"
     }
 }

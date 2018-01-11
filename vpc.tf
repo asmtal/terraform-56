@@ -6,19 +6,20 @@
 resource "aws_vpc" "default" {
     cidr_block = "${var.vpc_cidr}"
     enable_dns_hostnames = true
+    instance_tenancy = "dedicated"
     tags {
-        Name = "greninja-kordata"
-        Environment = "Greninja"
-        Category = "Kordata"
+        Name = "environment-name"
+        Environment = "environment"
+        Category = "SomeCategoryName"
     }
 }
 
 resource "aws_internet_gateway" "default" {
     vpc_id = "${aws_vpc.default.id}"
     tags {
-        Name = "greninja-igw"
-        Environment = "Greninja"
-        Category = "Kordata"
+        Name = "environment-igw"
+        Environment = "environment"
+        Category = "SomeCategoryName"
     }
 }
 
@@ -56,9 +57,9 @@ resource "aws_subnet" "us-west-2a-public" {
     availability_zone = "us-west-2a"
 
     tags {
-        Name = "greninja-public-2a"
-        Environment = "greninja"
-        Category = "Kordata" 
+        Name = "environment-public-2a"
+        Environment = "environment"
+        Category = "SomeCategoryName" 
     }
 }
 
@@ -71,9 +72,9 @@ resource "aws_route_table" "us-west-2a-public" {
     }
 
     tags {
-        Name = "greninja-Public-2a"
-        Environment = "Greninja"
-        Category = "Kordata"
+        Name = "environment-Public-2a"
+        Environment = "environment"
+        Category = "SomeCategoryName"
     }
 }
 
@@ -88,9 +89,9 @@ resource "aws_subnet" "us-west-2b-public" {
     availability_zone = "us-west-2b"
 
     tags {
-        Name = "greninja-public-2b"
-        Environment = "Greninja"
-        Category = "Kordata" 
+        Name = "environment-public-2b"
+        Environment = "environment"
+        Category = "SomeCategoryName" 
     }
 }
 
@@ -103,9 +104,9 @@ resource "aws_route_table" "us-west-2b-public" {
     }
 
     tags {
-        Name = "greninja-Public-2b"
-        Environment = "Greninja"
-        Category = "Kordata"
+        Name = "environment-Public-2b"
+        Environment = "environment"
+        Category = "SomeCategoryName"
     }
 }
 
@@ -124,9 +125,9 @@ resource "aws_subnet" "us-west-2a-private" {
     availability_zone = "us-west-2a"
 
     tags {
-        Name = "greninja-private-2a"
-        Environment = "Greninja"
-        Category = "Kordata"
+        Name = "environment-private-2a"
+        Environment = "environment"
+        Category = "SomeCategoryName"
     }
 }
 
@@ -139,9 +140,9 @@ resource "aws_route_table" "us-west-2a-private" {
     }
 
     tags {
-        Name = "greninja-private-2a"
-        Environment = "Greninja"
-        Category = "Kordata"
+        Name = "environment-private-2a"
+        Environment = "environment"
+        Category = "SomeCategoryName"
     }
 }
 
@@ -157,9 +158,9 @@ resource "aws_subnet" "us-west-2b-private" {
     availability_zone = "us-west-2b"
 
     tags {
-        Name = "greninja-private-2b"
-        Environment = "Greninja"
-        Category = "Kordata"
+        Name = "environment-private-2b"
+        Environment = "environment"
+        Category = "SomeCategoryName"
     }
 }
 
@@ -172,13 +173,24 @@ resource "aws_route_table" "us-west-2b-private" {
     }
 
     tags {
-        Name = "greninja-private-2b"
-        Environment = "Greninja"
-        Category = "Kordata"
+        Name = "environment-private-2b"
+        Environment = "environment"
+        Category = "SomeCategoryName"
     }
 }
 
 resource "aws_route_table_association" "us-west-2b-private" {
     subnet_id = "${aws_subnet.us-west-2b-private.id}"
     route_table_id = "${aws_route_table.us-west-2b-private.id}"
+}
+
+resource "aws_vpc_peering_connection" "environment-cb" {
+    peer_owner_id = "${var.peer_owner_id}"
+    peer_vpc_id = "${var.peer_vpc_id}"
+    vpc_id = "${aws_vpc.default.id}"
+    auto_accept = true
+
+    tags {
+        Name = "environment"
+    }
 }

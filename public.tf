@@ -2,7 +2,7 @@
   Web Servers
 */
 resource "aws_security_group" "web" {
-    name = "greninja_public_secgroup"
+    name = "_public_secgroup"
     description = "Allow incoming HTTP connections."
 
     ingress {
@@ -10,6 +10,12 @@ resource "aws_security_group" "web" {
         to_port = 80
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
+    }
+    ingress {
+        from_port = 8443
+        to_port = 8443
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
     }
     ingress {
         from_port = 443
@@ -120,6 +126,12 @@ resource "aws_security_group" "web" {
         cidr_blocks = ["0.0.0.0/0"]
     }
     egress {
+        from_port = 8443
+        to_port = 8443
+        protocol = "tcp"
+        cidr_blocks = ["10.0.0.0/16"]
+    }
+    egress {
         from_port = 8080
         to_port = 8080
         protocol = "tcp"
@@ -225,8 +237,8 @@ resource "aws_security_group" "web" {
     vpc_id = "${aws_vpc.default.id}"
 
     tags {
-        Name = "greninja.public.secgroup"
-        Category = "Kordata"
-        Environment = "Greninja"
+        Name = "environment.public.secgroup"
+        Category = "SomeCategoryName"
+        Environment = "environment"
     }
 }

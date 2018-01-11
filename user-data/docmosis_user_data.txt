@@ -1,9 +1,9 @@
 #!/bin/bash
 apt-get update
 #No need for env vars due to same template repository for all environments
-/bin/bash /home/ubuntu/kordata-configs.sh >> /var/log/kordata-configs.log 2>&1
-/bin/bash /home/ubuntu/kordata-templates.sh >> /var/log/kordata-templates.log 2>&1
+/bin/bash /home/ubuntu/environment-configs.sh >> /var/log/environment-configs.log 2>&1
+/bin/bash /home/ubuntu/environment-templates.sh >> /var/log/environment-templates.log 2>&1
 #Set env var permanently
-echo "export ENV_NAME=greninja" >> /home/ubuntu/.profile
+echo "export ENV_NAME=environment" >> /home/ubuntu/.profile
 #Set env var for this session
-export ENV_NAME=greninja
+export ENV_NAME=environment
